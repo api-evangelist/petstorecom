@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://petstore.com/robots.txt
+host: https://petstore.com
+documents:
+  - path: /.well-known/ucp
+    status: 200
+    file: petstorecom-ucp.json
+    note: Universal Commerce Protocol (UCP) merchant profile — versions, service endpoints, capabilities, payment handlers
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: petstorecom-openid-configuration.json
+    note: Shopify Customer Account OIDC discovery document
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /agents.md
+    status: 200
+    file: petstorecom-agents.md
+    note: Canonical agent-facing description of the store (UCP/MCP + read-only browsing)
+  - path: /llms.txt
+    status: 200
+    file: ../llms/petstorecom-llms.txt
+    note: Mirrors /agents.md

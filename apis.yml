@@ -1,8 +1,30 @@
 aid: petstorecom
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/petstorecom.png
 name: Petstore.com
-description: Petstore.com is a company surfaced as a portfolio company of battery-ventures and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Petstore.com is an online pet-supplies store built on Shopify that exposes a
+  first-class agent commerce surface. Alongside the human storefront it implements
+  the Universal Commerce Protocol (UCP) over the Model Context Protocol (MCP) at
+  /api/ucp/mcp, publishes a /.well-known/ucp merchant profile and a /agents.md
+  (mirrored as /llms.txt) describing how AI agents can search the catalog, build a
+  cart, and drive a buyer-approved checkout. Buyer identity uses Shopify Customer
+  Account OpenID Connect, payment is handled by Google Pay and Shopify card
+  handlers, and every checkout requires contemporaneous human approval. Read-only
+  storefront browsing (products, collections, search, sitemap) needs no auth. Added
+  to the API Evangelist network as a Battery Ventures portfolio lead; enriched from
+  the store's live agent-facing surface.
 url: https://raw.githubusercontent.com/api-evangelist/petstorecom/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,12 +34,81 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Commerce
+- E-commerce
+- Retail
+- Pet Supplies
+- Agentic Commerce
+- UCP
+- MCP
+- Shopify
+apis:
+- name: Petstore.com Commerce (UCP/MCP)
+  description: >-
+    Agent-facing commerce endpoint for the Petstore.com Shopify store, implemented
+    via the Universal Commerce Protocol (UCP) over MCP — catalog search, cart, and
+    buyer-approved checkout.
+  humanURL: https://petstore.com/agents.md
+  baseURL: https://petstore.com/api/ucp/mcp
+  tags:
+  - Commerce
+  - Agentic Commerce
+  - UCP
+  - MCP
+  properties:
+  - type: MCPServer
+    url: mcp/petstorecom-mcp.yml
+  - type: Documentation
+    url: https://petstore.com/agents.md
+  - type: LLMsTxt
+    url: llms/petstorecom-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DomainSecurity
+  url: security/petstorecom-domain-security.yml
+- type: Website
+  url: https://petstore.com
+- type: Documentation
+  url: https://petstore.com/agents.md
+- type: MCPServer
+  url: mcp/petstorecom-mcp.yml
+- type: WellKnown
+  url: well-known/petstorecom-well-known.yml
+- type: LLMsTxt
+  url: llms/petstorecom-llms.txt
+- type: Authentication
+  url: authentication/petstorecom-authentication.yml
+- type: OpenIDConnect
+  url: well-known/petstorecom-openid-configuration.json
+- type: OAuthScopes
+  url: scopes/petstorecom-scopes.yml
+- type: Conventions
+  url: conventions/petstorecom-conventions.yml
+- type: Conformance
+  url: conformance/petstorecom-conformance.yml
+- type: AgentSkill
+  url: skills/petstorecom-agentic-checkout.md
+- type: TermsOfService
+  url: https://petstore.com/policies/terms-of-service
+- type: PrivacyPolicy
+  url: https://petstore.com/policies/privacy-policy
+- type: Support
+  url: https://petstore.com/pages/contact
+- type: Blog
+  url: https://petstore.com/blogs/news
+- type: SignUp
+  url: https://petstore.com/account/register
+- type: Login
+  url: https://petstore.com/account/login
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1

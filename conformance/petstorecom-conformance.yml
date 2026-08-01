@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://petstore.com/.well-known/ucp
+standards:
+  - id: ucp
+    name: Universal Commerce Protocol
+    conforms: true
+    version: '2026-04-08'
+    evidence: /.well-known/ucp advertises UCP merchant profile with shopping services and capabilities
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: UCP shopping service exposes an MCP transport at /api/ucp/mcp (JSON-RPC 2.0)
+  - id: oidc
+    name: OpenID Connect
+    conforms: true
+    evidence: /.well-known/openid-configuration (Shopify Customer Account), RS256 id_token, S256 PKCE
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: authorization_code + refresh_token grants, client_secret_basic token auth
+  - id: rfc9116-security-txt
+    name: security.txt
+    conforms: false
+    evidence: /.well-known/security.txt returned 404
+  - id: rfc9457-problem-details
+    name: RFC 9457 Problem Details
+    conforms: false
+    evidence: errors use JSON-RPC 2.0 error objects, not application/problem+json

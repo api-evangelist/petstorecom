@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: searched
+source: https://petstore.com/agents.md
+summary: >-
+  Cross-cutting agent-facing conventions for Petstore.com's UCP/MCP commerce
+  surface and read-only storefront, captured from /agents.md and /llms.txt.
+authentication:
+  style: Shopify Customer Account OIDC (authorization_code + PKCE)
+  read_only: No auth required for storefront product/collection/search/sitemap reads
+  ref: authentication/petstorecom-authentication.yml
+agentic_commerce:
+  protocol: Universal Commerce Protocol (UCP)
+  transport: MCP over HTTP (POST https://petstore.com/api/ucp/mcp)
+  discovery: GET https://petstore.com/.well-known/ucp
+  versions: ['2026-04-08', '2026-01-23']
+  flow:
+    - discover — GET /.well-known/ucp to confirm capabilities
+    - search — search_catalog
+    - cart — create_cart
+    - checkout — create_checkout
+    - fulfill — update_checkout (shipping address + method)
+    - complete — complete_checkout (buyer must approve payment)
+buyer_approval_invariant:
+  required: true
+  rule: >-
+    Agents must not complete checkout, payment, or order placement automatically.
+    No scripted form fills, browser automation, or end-to-end flows that finalize
+    payment without an explicit, contemporaneous human approval step.
+  fallback: Route the purchase through Shop Pay via https://shop.app/SKILL.md
+rate_limiting:
+  signaled_via: HTTP 429
+  guidance: The MCP endpoint is rate-limited per IP; back off on 429 responses.
+  ref: null
+request_context:
+  fields:
+    - context.address_country
+    - context.currency
+  purpose: Accurate pricing and availability for the buyer.
+read_only_browsing:
+  products_json: GET /products/{handle}.json
+  collections_json: GET /collections/{handle}/products.json
+  search: GET /search?q={query}&type=product
+  sitemap: GET /sitemap.xml
+idempotency:
+  supported: false
+  note: No idempotency-key contract is documented for the UCP/MCP surface.
+error_envelope:
+  transport: JSON-RPC 2.0 (MCP)
+  shape: '{ jsonrpc, id, error: { code, message, data: { code, content, continue_url } } }'
+  example_code: -32001 (UCP discovery failed)
+cross_links:
+  authentication: authentication/petstorecom-authentication.yml
+  scopes: scopes/petstorecom-scopes.yml
+  mcp: mcp/petstorecom-mcp.yml
+  well_known: well-known/petstorecom-well-known.yml

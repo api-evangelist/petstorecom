@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://petstore.com/.well-known/openid-configuration
+docs: https://petstore.com/agents.md
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [authorizationCode]
+  pkce: [S256]
+  notes: >-
+    Buyer identity and the agent-facing MCP surface authenticate via Shopify
+    Customer Account OpenID Connect. Read-only storefront browsing (products,
+    collections, search, sitemap) requires no authentication. Payment always
+    requires contemporaneous human approval regardless of auth.
+schemes:
+  - name: ShopifyCustomerAccountOIDC
+    type: openIdConnect
+    openIdConnectUrl: https://petstore.com/.well-known/openid-configuration
+    issuer: https://shopify.com/authentication/27249049675
+    authorizationUrl: https://shopify.com/authentication/27249049675/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/27249049675/oauth/token
+    jwks_uri: https://shopify.com/authentication/27249049675/.well-known/jwks.json
+    grant_types: [authorization_code, refresh_token, "urn:ietf:params:oauth:grant-type:jwt-bearer"]
+    response_types: [code]
+    code_challenge_methods: [S256]
+    token_endpoint_auth_methods: [client_secret_basic]
+    id_token_signing_alg: [RS256]
+    scopes:
+      - openid
+      - email
+      - customer-account-api:full
+      - customer-account-mcp-api:full
+    sources: [well-known/petstorecom-openid-configuration.json]

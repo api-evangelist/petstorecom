@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+  - file: petstorecom-agentic-checkout.md
+    name: Petstore.com agent-driven shopping and checkout
+    api: mcp/petstorecom-mcp.yml
+    operations: [search_catalog, create_cart, create_checkout, update_checkout, complete_checkout]

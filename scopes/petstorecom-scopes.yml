@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://petstore.com/.well-known/openid-configuration
+docs: https://petstore.com/.well-known/openid-configuration
+schemes:
+  - name: ShopifyCustomerAccountOIDC
+    source: well-known/petstorecom-openid-configuration.json
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://shopify.com/authentication/27249049675/oauth/authorize
+        tokenUrl: https://shopify.com/authentication/27249049675/oauth/token
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication — issue an ID token for the buyer.
+    flows: [authorizationCode]
+    sources: [well-known/petstorecom-openid-configuration.json]
+  - scope: email
+    description: Access the buyer's email address and verification status.
+    flows: [authorizationCode]
+    sources: [well-known/petstorecom-openid-configuration.json]
+  - scope: customer-account-api:full
+    description: Full access to the Shopify Customer Account API for the signed-in buyer.
+    flows: [authorizationCode]
+    sources: [well-known/petstorecom-openid-configuration.json]
+  - scope: customer-account-mcp-api:full
+    description: >-
+      Full access to the Customer Account MCP API — the agent-facing surface used
+      by UCP/MCP tools acting on the buyer's behalf.
+    flows: [authorizationCode]
+    sources: [well-known/petstorecom-openid-configuration.json]
