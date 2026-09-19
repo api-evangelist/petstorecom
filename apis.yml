@@ -53,7 +53,7 @@ tags:
 - Retail
 - Pet Supplies
 - Agentic Commerce
-- UCP
+- Universal Commerce Protocol
 - MCP
 - Shopify
 tags_raw:
@@ -75,6 +75,11 @@ apis:
   humanURL: https://petstore.com/agents.md
   baseURL: https://petstore.com/api/ucp/mcp
   tags:
+  - Commerce
+  - Agentic Commerce
+  - Universal Commerce Protocol
+  - MCP
+  tags_raw:
   - Commerce
   - Agentic Commerce
   - UCP
