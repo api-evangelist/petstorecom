@@ -2,11 +2,14 @@ generated: '2026-07-20'
 method: searched
 source: https://petstore.com/robots.txt
 host: https://petstore.com
-documents:
+hosts:
+- host: https://petstore.com
+  documents:
   - path: /.well-known/ucp
     status: 200
     file: petstorecom-ucp.json
-    note: Universal Commerce Protocol (UCP) merchant profile — versions, service endpoints, capabilities, payment handlers
+    note: Universal Commerce Protocol (UCP) merchant profile — versions, service endpoints, capabilities,
+      payment handlers
   - path: /.well-known/openid-configuration
     status: 200
     file: petstorecom-openid-configuration.json
@@ -19,11 +22,8 @@ documents:
     status: 404
   - path: /.well-known/api-catalog
     status: 404
-  - path: /agents.md
-    status: 200
-    file: petstorecom-agents.md
-    note: Canonical agent-facing description of the store (UCP/MCP + read-only browsing)
-  - path: /llms.txt
-    status: 200
-    file: ../llms/petstorecom-llms.txt
-    note: Mirrors /agents.md
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
