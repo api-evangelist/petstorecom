@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/petstorecom/integrations
+- https://zapier.com/apps/petstore-com/integrations
+- https://n8n.io/integrations/petstorecom/
+- https://composio.dev/toolkits/petstorecom
+- https://monid.ai/tools/petstorecom
+checked:
+- https://composio.dev/toolkits/petstorecom
+- https://monid.ai/tools/petstorecom
+- https://n8n.io/integrations/petstorecom/
+- https://zapier.com/apps/petstore-com/integrations
+- https://zapier.com/apps/petstorecom/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
